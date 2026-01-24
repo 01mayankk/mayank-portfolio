@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-dark: #0B0F14;
+  --color-primary: #0B0F14;
+  --color-secondary: #1A1F29;
+  --color-text: #E6EDF3;
+  --color-text-muted: #8B949E;
+
+  --color-accent-cyan: #22D3EE;
+  --color-accent-violet: #8B5CF6;
+
+  --font-sans: Inter, sans-serif;
+  --font-heading: Poppins, sans-serif;
+
+  --animate-spin-slow: spin 3s linear infinite;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-dark text-text font-sans antialiased selection:bg-accent-cyan/30 selection:text-white;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent-cyan to-accent-violet;
+  }
+
+  .glass-card {
+    @apply bg-secondary/30 backdrop-blur-md border border-white/10;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-secondary rounded-full border-2 border-dark;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-accent-cyan/50;
+}
