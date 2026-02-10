@@ -5,16 +5,16 @@ import SectionTitle from './ui/SectionTitle';
 const Timeline = () => {
     const experiences = [
         {
+            year: "2023 - 2026",
+            title: "Project Experience",
+            description: "Built TextIntellect (GenAI RAG Bot), NandiVision (CNN Cattle Classifier), and NeuroCargo (Logistics System). Tech: Python, React, Next.js.",
+            icon: FaLaptopCode,
+        },
+        {
             year: "2023 - Present",
             title: "Bachelor of Technology (CSE)",
             description: "Lovely Professional University. Current CGPA: 7.31.",
             icon: FaGraduationCap,
-        },
-        {
-            year: "2025 - 2026",
-            title: "Project Experience",
-            description: "Built TextIntellect (GenAI RAG Bot), NandiVision (CNN Cattle Classifier), and NeuroCargo (Logistics System). Tech: Python, React, Next.js.",
-            icon: FaLaptopCode,
         },
         {
             year: "2021 - 2023",
