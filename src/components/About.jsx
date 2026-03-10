@@ -4,9 +4,9 @@ import SectionTitle from './ui/SectionTitle';
 
 const About = () => {
     const stats = [
-        { label: "Problems Solved", value: "700+", icon: FaCode },
+        { label: "Problems Solved", value: "800+", icon: FaCode },
         { label: "CS Fundamentals", value: "Strong", icon: FaServer },
-        { label: "GATE Focus", value: "2026", icon: FaBrain },
+        { label: "GATE Focus", value: "2027", icon: FaBrain },
         { label: "Projects", value: "Multiple", icon: FaRocket },
     ];
 
@@ -30,7 +30,7 @@ const About = () => {
                         </p>
 
                         <p className="text-lg text-text-muted leading-relaxed">
-                            Currently preparing for <span className="text-accent-violet font-semibold">GATE 2026</span> while continuously building projects that bridge the gap between theory and practice.
+                            Currently preparing for <span className="text-accent-violet font-semibold">GATE 2027</span> while continuously building projects that bridge the gap between theory and practice.
                         </p>
                     </motion.div>
 
