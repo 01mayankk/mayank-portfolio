@@ -121,11 +121,11 @@ const Hero = () => {
                             className="absolute -inset-12 border border-white/5 rounded-full"
                         ></motion.div>
 
-                        <div className="relative w-full h-full rounded-full p-2 border border-white/10 overflow-hidden bg-secondary/30 backdrop-blur-md shadow-2xl z-10">
+                        <div className="relative w-full h-full rounded-full p-12 border border-white/10 overflow-hidden bg-secondary/30 backdrop-blur-md shadow-2xl z-10">
                             <img
                                 src={profileImage}
                                 alt="Mayank Kumar"
-                                className="w-full h-full object-cover rounded-full transition-transform duration-700"
+                                className="w-full h-full object-contain transition-transform duration-700"
                                 style={{ objectPosition: 'center' }}
                             />
 

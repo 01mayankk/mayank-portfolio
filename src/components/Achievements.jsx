@@ -3,7 +3,7 @@ import { motion, useInView, useMotionValue, useTransform, animate } from 'framer
 import { FaCode, FaRocket, FaGithub, FaGraduationCap } from 'react-icons/fa';
 import SectionTitle from './ui/SectionTitle';
 
-const Counter = ({ value, duration = 2 }) => {
+const Counter = ({ value, duration = 4 }) => {
     const count = useMotionValue(0);
     const rounded = useTransform(count, (latest) => {
         // Handle values like "800+", "1.2k+", "2027"
