@@ -94,25 +94,56 @@ const Hero = () => {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="relative hidden md:flex justify-center"
                 >
-                    {/* Profile Image with Glow */}
-                    <div className="relative w-80 h-80 md:w-[28rem] md:h-[28rem]">
-                        <div className="absolute inset-0 bg-gradient-to-tr from-accent-cyan to-accent-violet rounded-full blur-2xl opacity-20 animate-pulse"></div>
-                        <div className="relative w-full h-full rounded-full p-2 border-2 border-white/10 overflow-hidden bg-secondary/30 backdrop-blur-sm shadow-2xl">
+                    {/* Profile Image with Enhanced Visuals */}
+                    <motion.div
+                        animate={{ y: [0, -15, 0] }}
+                        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                        className="relative w-80 h-80 md:w-[28rem] md:h-[28rem]"
+                    >
+                        {/* Multiple Glow Layers */}
+                        <div className="absolute inset-0 bg-accent-cyan/20 rounded-full blur-3xl animate-pulse"></div>
+                        <div className="absolute inset-0 bg-accent-violet/10 rounded-full blur-2xl animate-pulse delay-700"></div>
+
+                        {/* Rotating Rings */}
+                        <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                            className="absolute -inset-4 border border-accent-cyan/20 rounded-full border-dashed"
+                        ></motion.div>
+                        <motion.div
+                            animate={{ rotate: -360 }}
+                            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                            className="absolute -inset-8 border border-accent-violet/10 rounded-full border-dashed"
+                        ></motion.div>
+                        <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                            className="absolute -inset-12 border border-white/5 rounded-full"
+                        ></motion.div>
+
+                        <div className="relative w-full h-full rounded-full p-2 border border-white/10 overflow-hidden bg-secondary/30 backdrop-blur-md shadow-2xl z-10">
                             <img
                                 src={profileImage}
                                 alt="Mayank Kumar"
-                                className="w-full h-full object-cover rounded-full hover:scale-105 transition-transform duration-500"
+                                className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-700"
                                 style={{ objectPosition: '50% 25%' }}
                             />
+
+                            {/* Holographic Scanner Effect */}
+                            <motion.div
+                                animate={{ top: ['0%', '100%', '0%'] }}
+                                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                                className="absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent-cyan/40 to-transparent shadow-[0_0_15px_rgba(0,255,255,0.5)] z-20 pointer-events-none"
+                            ></motion.div>
+
+                            {/* Glass Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-tr from-accent-cyan/5 to-transparent pointer-events-none"></div>
                         </div>
 
-                        {/* Decoration Circles */}
-                        <motion.div
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                            className="absolute -inset-4 border border-white/5 rounded-full border-dashed"
-                        ></motion.div>
-                    </div>
+                        {/* Tech Ornaments */}
+                        <div className="absolute -top-2 -right-2 w-4 h-4 border-t-2 border-r-2 border-accent-cyan"></div>
+                        <div className="absolute -bottom-2 -left-2 w-4 h-4 border-b-2 border-l-2 border-accent-cyan"></div>
+                    </motion.div>
                 </motion.div>
             </div>
 
