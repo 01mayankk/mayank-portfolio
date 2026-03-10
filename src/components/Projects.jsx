@@ -12,6 +12,7 @@ const Projects = () => {
             id: 1,
             title: "TextIntellect",
             category: "AI / GenAI",
+            image: "/projects/textintellect.png",
             description: "Document Q&A Bot using RAG pipeline for efficient information retrieval from user-uploaded files.",
             details: "Built with Python, LangChain, and Streamlit. Features a robust RAG (Retrieval-Augmented Generation) pipeline to process documents and answer user queries with high accuracy.",
             tech: ["Python", "LangChain", "Hugging Face", "Streamlit"],
@@ -21,6 +22,7 @@ const Projects = () => {
             id: 2,
             title: "Nandi Vision",
             category: "Machine Learning",
+            image: "/projects/nandivision.png",
             description: "AI-powered cattle breed classifier using efficient CNN architectures.",
             details: "Implements a two-stage EfficientNet-B0/B2 CNN model to strictly classify cattle breeds and assist in breeding programs. Developed with TensorFlow and OpenCV.",
             tech: ["Python", "TensorFlow", "OpenCV", "Deep Learning"],
@@ -30,6 +32,7 @@ const Projects = () => {
             id: 3,
             title: "NeuroCargo",
             category: "System / Web App",
+            image: "/projects/neurocargo.png",
             description: "Vehicle load management system predicting overload status with high accuracy.",
             details: "A comprehensive web application that predicts vehicle load status with 93.6% accuracy. Features a React frontend and Flask backend with Material-UI for design.",
             tech: ["React", "Flask", "Python", "Material-UI"],
@@ -39,6 +42,7 @@ const Projects = () => {
             id: 4,
             title: "AlgoViz",
             category: "Educational Tool",
+            image: "/projects/algoviz.png",
             description: "Interactive algorithm visualizer for sorting and pathfinding algorithms.",
             details: "An interactive platform to visualize complex algorithms like Quick Sort, Merge Sort, Dijkstra's, and A* in real-time. Helps students understand algorithmic flow.",
             tech: ["React", "Algorithms", "Visualization", "CSS"],
@@ -48,6 +52,7 @@ const Projects = () => {
             id: 5,
             title: "KaalChitra",
             category: "AI History Explorer",
+            image: "/projects/kaalchitra.png",
             description: "Explore historical eras and timelines through an AI-powered interface.",
             details: "An immersive application allowing users to navigate through different historical periods ('Kaal') via a visual ('Chitra') interface.",
             tech: ["React", "AI Integration", "Tailwind CSS"],
@@ -57,6 +62,7 @@ const Projects = () => {
             id: 6,
             title: "Ck Fitness",
             category: "Web Application",
+            image: "/projects/ckfitness.png",
             description: "A modern fitness and gym website with comprehensive workout guides.",
             details: "A fully responsive fitness website features exercise databases, workout plans, and BMI calculators. Built for a seamless user experience.",
             tech: ["React", "API Integration", "Tailwind CSS"],
@@ -80,9 +86,14 @@ const Projects = () => {
                             onClick={() => setSelectedProject(project)}
                             className="group relative bg-secondary/30 backdrop-blur-sm border border-white/5 rounded-2xl overflow-hidden cursor-pointer hover:shadow-2xl hover:shadow-accent-cyan/10 transition-all duration-300 flex flex-col h-full"
                         >
-                            <div className="h-48 bg-gradient-to-br from-secondary to-dark flex items-center justify-center p-6 relative overflow-hidden shrink-0">
-                                <div className="absolute inset-0 bg-accent-cyan/5 group-hover:bg-accent-cyan/10 transition-colors duration-300"></div>
-                                <FaCode className="text-6xl text-text-muted/20 group-hover:text-accent-cyan/40 transition-colors duration-300 group-hover:scale-110 transform" />
+                            <div className="h-48 bg-secondary relative overflow-hidden shrink-0">
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-dark to-transparent opacity-60"></div>
+                                <div className="absolute inset-0 bg-accent-cyan/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </div>
 
                             <div className="p-6 flex flex-col flex-grow">
@@ -130,9 +141,13 @@ const Projects = () => {
                                 <FaTimes />
                             </button>
 
-                            <div className="h-48 md:h-64 bg-gradient-to-br from-accent-cyan/10 to-accent-violet/10 flex items-center justify-center relative overflow-hidden">
-                                <FaCode className="text-8xl text-text-muted/20" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-secondary to-transparent"></div>
+                            <div className="h-64 md:h-80 relative overflow-hidden">
+                                <img
+                                    src={selectedProject.image}
+                                    alt={selectedProject.title}
+                                    className="w-full h-full object-cover"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/20 to-transparent"></div>
                             </div>
 
                             <div className="p-8">
