@@ -3,7 +3,7 @@ import SectionTitle from './ui/SectionTitle';
 
 const Achievements = () => {
     const achievements = [
-        { label: "Problems Solved", value: "700+", description: "Across LeetCode, CodeForces, and GFG" },
+        { label: "Problems Solved", value: "800+", description: "Across LeetCode, CodeForces, and GFG" },
         { label: "GATE Aim", value: "2027", description: "Focused preparation for top IITs" },
         { label: "AI/ML & Fullstack Projects", value: "10+", description: "System-level applications & deploying models" },
         { label: "Commits", value: "1.2k+", description: "Active contributions on GitHub" }
