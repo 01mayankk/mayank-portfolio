@@ -125,16 +125,9 @@ const Hero = () => {
                             <img
                                 src={profileImage}
                                 alt="Mayank Kumar"
-                                className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-700"
-                                style={{ objectPosition: '50% 25%' }}
+                                className="w-full h-full object-cover rounded-full transition-transform duration-700"
+                                style={{ objectPosition: 'center' }}
                             />
-
-                            {/* Holographic Scanner Effect */}
-                            <motion.div
-                                animate={{ top: ['0%', '100%', '0%'] }}
-                                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                                className="absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent-cyan/40 to-transparent shadow-[0_0_15px_rgba(0,255,255,0.5)] z-20 pointer-events-none"
-                            ></motion.div>
 
                             {/* Glass Overlay */}
                             <div className="absolute inset-0 bg-gradient-to-tr from-accent-cyan/5 to-transparent pointer-events-none"></div>
