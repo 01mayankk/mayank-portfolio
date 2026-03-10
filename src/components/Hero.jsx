@@ -94,48 +94,66 @@ const Hero = () => {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="relative hidden md:flex justify-center"
                 >
-                    {/* Profile Image with Enhanced Visuals */}
+                    {/* 
+                      Profile Visual System 
+                      - Orbital navigation rings with satellite trackers
+                      - Multi-layer blend isolation to preserve facial colors
+                    */}
                     <motion.div
-                        animate={{ y: [0, -15, 0] }}
-                        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                        className="relative w-80 h-80 md:w-[28rem] md:h-[28rem]"
+                        animate={{ y: [0, -10, 0] }}
+                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                        className="relative w-64 h-64 md:w-[22rem] md:h-[22rem]"
                     >
-                        {/* Multiple Glow Layers */}
-                        <div className="absolute inset-0 bg-accent-cyan/20 rounded-full blur-3xl animate-pulse"></div>
-                        <div className="absolute inset-0 bg-accent-violet/10 rounded-full blur-2xl animate-pulse delay-700"></div>
+                        {/* 
+                          Atmospheric Glow (Isolated behind the subject)
+                        */}
+                        <div className="absolute inset-0 bg-accent-cyan/10 rounded-full blur-[100px] animate-pulse pointer-events-none"></div>
 
-                        {/* Rotating Rings */}
+                        {/* Orbitals with Satellite Particles */}
                         <motion.div
                             animate={{ rotate: 360 }}
-                            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                            className="absolute -inset-4 border border-accent-cyan/20 rounded-full border-dashed"
-                        ></motion.div>
+                            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                            className="absolute -inset-4 border border-accent-cyan/20 rounded-full border-dashed pointer-events-none"
+                        >
+                            <div className="absolute top-1/2 -left-1 w-2 h-2 bg-accent-cyan rounded-sm shadow-[0_0_10px_cyan]"></div>
+                        </motion.div>
+
                         <motion.div
                             animate={{ rotate: -360 }}
-                            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                            className="absolute -inset-8 border border-accent-violet/10 rounded-full border-dashed"
-                        ></motion.div>
-                        <motion.div
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                            className="absolute -inset-12 border border-white/5 rounded-full"
-                        ></motion.div>
+                            transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+                            className="absolute -inset-8 border border-white/10 rounded-full border-dashed pointer-events-none"
+                        >
+                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-accent-violet rounded-full shadow-[0_0_8px_violet]"></div>
+                        </motion.div>
 
-                        <div className="relative w-full h-full rounded-full p-12 border border-white/10 overflow-hidden bg-secondary/30 backdrop-blur-md shadow-2xl z-10">
+                        {/* 
+                          Main Image Processing Module 
+                          - Isolation prevents 'multiply' bleed from background glows onto the face
+                        */}
+                        <div
+                            className="relative w-full h-full rounded-full p-2 border border-white/10 overflow-hidden bg-white shadow-2xl z-10"
+                            style={{
+                                mixBlendMode: 'multiply',
+                                isolation: 'isolate'
+                            }}
+                        >
                             <img
                                 src={profileImage}
                                 alt="Mayank Kumar"
-                                className="w-full h-full object-contain transition-transform duration-700"
-                                style={{ objectPosition: 'center' }}
+                                className="w-full h-full object-contain transition-transform duration-700 hover:scale-110"
+                                style={{
+                                    objectPosition: 'center',
+                                    filter: 'contrast(1.02) brightness(1.05)',
+                                    // Soften the photo edge to prevent sharp cuts
+                                    maskImage: 'radial-gradient(circle, black 85%, transparent 100%)',
+                                    WebkitMaskImage: 'radial-gradient(circle, black 85%, transparent 100%)'
+                                }}
                             />
-
-                            {/* Glass Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-tr from-accent-cyan/5 to-transparent pointer-events-none"></div>
                         </div>
 
-                        {/* Tech Ornaments */}
-                        <div className="absolute -top-2 -right-2 w-4 h-4 border-t-2 border-r-2 border-accent-cyan"></div>
-                        <div className="absolute -bottom-2 -left-2 w-4 h-4 border-b-2 border-l-2 border-accent-cyan"></div>
+                        {/* HUD Decoration Corners */}
+                        <div className="absolute -top-1 -right-1 w-5 h-5 border-t border-r border-accent-cyan/40"></div>
+                        <div className="absolute -bottom-1 -left-1 w-5 h-5 border-b border-l border-accent-cyan/40"></div>
                     </motion.div>
                 </motion.div>
             </div>
@@ -158,7 +176,7 @@ const Hero = () => {
                     </motion.div>
                 </Link>
             </motion.div>
-        </section>
+        </section >
     );
 };
 
