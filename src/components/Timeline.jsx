@@ -5,12 +5,6 @@ import SectionTitle from './ui/SectionTitle';
 const Timeline = () => {
     const experiences = [
         {
-            year: "2023 - 2026",
-            title: "Project Experience",
-            description: "Built TextIntellect (GenAI RAG Bot), NandiVision (CNN Cattle Classifier), and NeuroCargo (Logistics System). Tech: Python, React, Next.js.",
-            icon: FaLaptopCode,
-        },
-        {
             year: "2023 - Present",
             title: "Bachelor of Technology (CSE)",
             description: "Lovely Professional University. Current CGPA: 7.31.",
@@ -31,13 +25,20 @@ const Timeline = () => {
     ];
 
     return (
-        <section id="experience" className="py-20 bg-secondary/10">
+        <section id="education" className="py-20 bg-secondary/10">
             <div className="container mx-auto px-6">
-                <SectionTitle title="Experience" subtitle="My Journey" />
+                <SectionTitle title="Education" subtitle="Academic Journey" />
 
                 <div className="relative max-w-4xl mx-auto">
                     {/* Vertical Line */}
-                    <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-0.5 bg-white/10 -translate-x-1/2"></div>
+                    <motion.div 
+                        initial={{ scaleY: 0 }}
+                        whileInView={{ scaleY: 1 }}
+                        transition={{ duration: 1.5, ease: "easeInOut" }}
+                        viewport={{ once: true }}
+                        style={{ transformOrigin: "top" }}
+                        className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent-emerald/40 via-accent-emerald/10 to-transparent -translate-x-1/2"
+                    ></motion.div>
 
                     {experiences.map((exp, index) => (
                         <div key={index} className={`relative flex items-center justify-between mb-12 md:mb-24 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
@@ -51,20 +52,20 @@ const Timeline = () => {
                                 whileInView={{ scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: 0.2 }}
-                                className="absolute left-[20px] md:left-1/2 -translate-x-1/2 w-10 h-10 bg-dark border-4 border-accent-cyan rounded-full z-10 flex items-center justify-center text-accent-cyan shadow-[0_0_15px_rgba(34,211,238,0.3)]"
+                                className="absolute left-[20px] md:left-1/2 -translate-x-1/2 w-10 h-10 bg-dark border-4 border-accent-emerald rounded-full z-10 flex items-center justify-center text-accent-emerald shadow-[0_0_15px_rgba(34,211,238,0.3)]"
                             >
                                 <exp.icon size={14} />
                             </motion.div>
 
                             {/* Content Card */}
                             <motion.div
-                                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                                initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.6 }}
-                                className="ml-12 md:ml-0 w-full md:w-5/12 bg-secondary/30 backdrop-blur-md border border-white/5 p-6 rounded-xl relative hover:border-accent-cyan/30 transition-all duration-300"
+                                transition={{ type: "spring", stiffness: 100, damping: 20, delay: index * 0.2 }}
+                                className="ml-12 md:ml-0 w-full md:w-5/12 bg-secondary/30 backdrop-blur-md border border-white/5 p-6 rounded-xl relative hover:border-accent-emerald/30 transition-all duration-300"
                             >
-                                <span className="text-accent-cyan font-mono text-xs mb-2 block">{exp.year}</span>
+                                <span className="text-accent-emerald font-mono text-xs mb-2 block">{exp.year}</span>
                                 <h3 className="text-xl font-bold mb-3 text-white">{exp.title}</h3>
                                 <p className="text-text-muted text-sm leading-relaxed">{exp.description}</p>
 

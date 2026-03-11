@@ -5,16 +5,28 @@ import { FaGithub, FaFileDownload, FaArrowRight } from 'react-icons/fa';
 import Button from './ui/Button';
 import profileImage from '../assets/images/formal_image.png';
 
+const roles = [
+    "Software Engineer",
+    "Algorithmic Problem Solver",
+    "AI & Systems Enthusiast"
+];
+
 const Hero = () => {
     const [text, setText] = useState('');
     const [roleIndex, setRoleIndex] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-    const roles = [
-        "Software Engineer",
-        "Algorithmic Problem Solver",
-        "AI & Systems Enthusiast"
-    ];
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            setMousePos({
+                x: (e.clientX / window.innerWidth - 0.5) * 20,
+                y: (e.clientY / window.innerHeight - 0.5) * 20
+            });
+        };
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
+    }, []);
 
     useEffect(() => {
         const currentRole = roles[roleIndex];
@@ -40,9 +52,19 @@ const Hero = () => {
         <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
             {/* Background Effects */}
             <div className="absolute inset-0 bg-dark">
-                <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-secondary/50 via-dark to-dark opacity-50"></div>
-                <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-accent-cyan/5 rounded-full blur-[100px]"></div>
-                <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-accent-violet/5 rounded-full blur-[100px]"></div>
+                <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-secondary/40 via-dark to-dark opacity-40"></div>
+                
+                {/* Parallax Glows */}
+                <motion.div 
+                    animate={{ x: mousePos.x, y: mousePos.y }}
+                    transition={{ type: "spring", damping: 30, stiffness: 200 }}
+                    className="absolute top-0 right-0 w-1/2 h-1/2 bg-accent-emerald/5 rounded-full blur-[120px]"
+                ></motion.div>
+                <motion.div 
+                    animate={{ x: -mousePos.x, y: -mousePos.y }}
+                    transition={{ type: "spring", damping: 30, stiffness: 200 }}
+                    className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-accent-emerald/5 rounded-full blur-[120px]"
+                ></motion.div>
             </div>
 
             <div className="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
@@ -112,18 +134,19 @@ const Hero = () => {
                         {/* Orbitals with Satellite Particles */}
                         <motion.div
                             animate={{ rotate: 360 }}
-                            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                            className="absolute -inset-4 border border-accent-cyan/20 rounded-full border-dashed pointer-events-none"
+                            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                            className="absolute -inset-4 border border-accent-emerald/10 rounded-full border-dashed pointer-events-none"
                         >
-                            <div className="absolute top-1/2 -left-1 w-2 h-2 bg-accent-cyan rounded-sm shadow-[0_0_10px_cyan]"></div>
+                            <div className="absolute top-1/2 -left-1 w-2 h-2 bg-accent-emerald rounded-sm shadow-[0_0_12px_#10b981]"></div>
                         </motion.div>
 
                         <motion.div
                             animate={{ rotate: -360 }}
-                            transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
-                            className="absolute -inset-8 border border-white/10 rounded-full border-dashed pointer-events-none"
+                            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                            className="absolute -inset-8 border border-white/5 rounded-full border-dashed pointer-events-none"
                         >
-                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-accent-violet rounded-full shadow-[0_0_8px_violet]"></div>
+                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-accent-violet rounded-full shadow-[0_0_10px_#8b5cf6]"></div>
+                            <div className="absolute bottom-0 right-1/2 translate-x-1/2 w-1 h-1 bg-accent-emerald/40 rounded-full"></div>
                         </motion.div>
 
                         {/* 

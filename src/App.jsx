@@ -5,6 +5,7 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Timeline from './components/Timeline';
 import Achievements from './components/Achievements';
+import Certifications from './components/Certifications';
 import Resume from './components/Resume';
 import Contact from './components/Contact';
 import CustomCursor from './components/ui/CustomCursor';
@@ -20,6 +21,7 @@ function App() {
         <Skills />
         <Projects />
         <Achievements />
+        <Certifications />
         <Timeline />
         <Resume />
         <Contact />

@@ -1,8 +1,95 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaTimes, FaCode } from 'react-icons/fa';
 import SectionTitle from './ui/SectionTitle';
 import Button from './ui/Button';
+
+const ProjectCard = ({ project, index, onClick }) => {
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const mouseXSpring = useSpring(x);
+    const mouseYSpring = useSpring(y);
+
+    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["5deg", "-5deg"]);
+    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-5deg", "5deg"]);
+
+    const handleMouseMove = (e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        const xPct = mouseX / width - 0.5;
+        const yPct = mouseY / height - 0.5;
+
+        x.set(xPct);
+        y.set(yPct);
+    };
+
+    const handleMouseLeave = () => {
+        x.set(0);
+        y.set(0);
+    };
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: index * 0.1 }}
+            viewport={{ once: true }}
+            onClick={onClick}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{
+                rotateX,
+                rotateY,
+                transformStyle: "preserve-3d",
+            }}
+            className="group relative bg-secondary/40 backdrop-blur-md border border-white/5 rounded-2xl overflow-hidden cursor-pointer hover:shadow-2xl hover:shadow-accent-emerald/10 transition-all duration-300 flex flex-col h-full border-b-2 border-b-transparent hover:border-b-accent-emerald"
+        >
+            <div className="h-48 bg-secondary relative overflow-hidden shrink-0" style={{ transform: "translateZ(30px)" }}>
+                <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark to-transparent opacity-60"></div>
+                <div className="absolute inset-0 bg-accent-emerald/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+
+            <div className="p-6 flex flex-col flex-grow" style={{ transform: "translateZ(20px)" }}>
+                <span className="text-accent-emerald text-xs font-medium tracking-wider uppercase mb-2 block">{project.category}</span>
+                <h3 className="text-xl font-bold mb-3 text-white group-hover:text-accent-emerald transition-colors">{project.title}</h3>
+                <p className="text-text-muted text-sm line-clamp-3 mb-4 flex-grow">{project.description}</p>
+
+                <div className="flex flex-wrap gap-2 mt-auto">
+                    {project.tech.slice(0, 3).map(t => (
+                        <span key={t} className="text-xs bg-dark/50 border border-white/5 px-2 py-1 rounded-md text-text-muted">
+                            {t}
+                        </span>
+                    ))}
+                    {project.tech.length > 3 && (
+                        <span className="text-xs bg-dark/50 border border-white/5 px-2 py-1 rounded-md text-text-muted">+{project.tech.length - 3}</span>
+                    )}
+                </div>
+            </div>
+            
+            {/* Holographic Shine */}
+            <motion.div
+                className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                    background: useTransform(
+                        mouseXSpring,
+                        [-0.5, 0.5],
+                        ["radial-gradient(circle at 0% 0%, rgba(16,185,129,0.05) 0%, transparent 50%)", "radial-gradient(circle at 100% 100%, rgba(16,185,129,0.05) 0%, transparent 50%)"]
+                    )
+                }}
+            />
+        </motion.div>
+    );
+};
 
 const Projects = () => {
     const [selectedProject, setSelectedProject] = useState(null);
@@ -75,44 +162,14 @@ const Projects = () => {
             <div className="container mx-auto px-6">
                 <SectionTitle title="Featured Projects" subtitle="What I've Built" />
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
                     {projects.map((project, index) => (
-                        <motion.div
-                            key={project.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            viewport={{ once: true }}
-                            onClick={() => setSelectedProject(project)}
-                            className="group relative bg-secondary/30 backdrop-blur-sm border border-white/5 rounded-2xl overflow-hidden cursor-pointer hover:shadow-2xl hover:shadow-accent-cyan/10 transition-all duration-300 flex flex-col h-full"
-                        >
-                            <div className="h-48 bg-secondary relative overflow-hidden shrink-0">
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-dark to-transparent opacity-60"></div>
-                                <div className="absolute inset-0 bg-accent-cyan/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            </div>
-
-                            <div className="p-6 flex flex-col flex-grow">
-                                <span className="text-accent-cyan text-xs font-medium tracking-wider uppercase mb-2 block">{project.category}</span>
-                                <h3 className="text-xl font-bold mb-3 text-white group-hover:text-accent-cyan transition-colors">{project.title}</h3>
-                                <p className="text-text-muted text-sm line-clamp-3 mb-4 flex-grow">{project.description}</p>
-
-                                <div className="flex flex-wrap gap-2 mt-auto">
-                                    {project.tech.slice(0, 3).map(t => (
-                                        <span key={t} className="text-xs bg-dark/50 border border-white/5 px-2 py-1 rounded-md text-text-muted">
-                                            {t}
-                                        </span>
-                                    ))}
-                                    {project.tech.length > 3 && (
-                                        <span className="text-xs bg-dark/50 border border-white/5 px-2 py-1 rounded-md text-text-muted">+{project.tech.length - 3}</span>
-                                    )}
-                                </div>
-                            </div>
-                        </motion.div>
+                        <ProjectCard 
+                            key={project.id} 
+                            project={project} 
+                            index={index} 
+                            onClick={() => setSelectedProject(project)} 
+                        />
                     ))}
                 </div>
             </div>
@@ -151,7 +208,7 @@ const Projects = () => {
                             </div>
 
                             <div className="p-8">
-                                <span className="text-accent-cyan font-medium tracking-wider uppercase text-sm mb-2 block">{selectedProject.category}</span>
+                                <span className="text-accent-emerald font-medium tracking-wider uppercase text-sm mb-2 block">{selectedProject.category}</span>
                                 <h3 className="text-3xl font-bold font-heading mb-4">{selectedProject.title}</h3>
 
                                 <p className="text-text-muted leading-relaxed mb-6 text-lg">{selectedProject.details}</p>

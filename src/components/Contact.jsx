@@ -41,27 +41,36 @@ const Contact = () => {
                         </p>
 
                         <div className="space-y-6">
-                            <div className="flex items-start gap-4">
-                                <div className="bg-secondary/50 p-3 rounded-lg text-accent-cyan">
-                                    <FaEnvelope size={20} />
-                                </div>
-                                <div>
-                                    <h4 className="text-white font-medium mb-1">Email</h4>
-                                    <a href="mailto:02mayankk@gmail.com" className="text-text-muted hover:text-accent-cyan transition-colors">
-                                        02mayankk@gmail.com
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div className="flex items-start gap-4">
-                                <div className="bg-secondary/50 p-3 rounded-lg text-accent-cyan">
-                                    <FaMapMarkerAlt size={20} />
-                                </div>
-                                <div>
-                                    <h4 className="text-white font-medium mb-1">Location</h4>
-                                    <p className="text-text-muted">India</p>
-                                </div>
-                            </div>
+                            {[
+                                { icon: FaEnvelope, label: "Email", value: "02mayankk@gmail.com", href: "mailto:02mayankk@gmail.com" },
+                                { icon: FaMapMarkerAlt, label: "Location", value: "India" }
+                            ].map((item, idx) => (
+                                <motion.div 
+                                    key={idx}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: idx * 0.1, duration: 0.5 }}
+                                    viewport={{ once: true }}
+                                    className="flex items-start gap-4 group"
+                                >
+                                    <motion.div 
+                                        whileHover={{ y: -3, scale: 1.1 }}
+                                        className="bg-secondary/60 p-3 rounded-lg text-accent-emerald border border-white/10 group-hover:border-accent-emerald transition-colors shadow-lg shadow-black/50"
+                                    >
+                                        <item.icon size={20} />
+                                    </motion.div>
+                                    <div>
+                                        <h4 className="text-white font-medium mb-1">{item.label}</h4>
+                                        {item.href ? (
+                                            <a href={item.href} className="text-text-muted hover:text-accent-emerald transition-colors">
+                                                {item.value}
+                                            </a>
+                                        ) : (
+                                            <p className="text-text-muted">{item.value}</p>
+                                        )}
+                                    </div>
+                                </motion.div>
+                            ))}
                         </div>
                     </motion.div>
 
@@ -81,7 +90,7 @@ const Contact = () => {
                                     id="name"
                                     value={formData.name}
                                     onChange={handleChange}
-                                    className="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent-cyan/50 focus:ring-1 focus:ring-accent-cyan/50 transition-all"
+                                    className="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent-emerald/50 focus:ring-1 focus:ring-accent-emerald/50 transition-all"
                                     placeholder="Your Name"
                                     required
                                 />
@@ -94,7 +103,7 @@ const Contact = () => {
                                     id="email"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    className="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent-cyan/50 focus:ring-1 focus:ring-accent-cyan/50 transition-all"
+                                    className="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent-emerald/50 focus:ring-1 focus:ring-accent-emerald/50 transition-all"
                                     placeholder="your@email.com"
                                     required
                                 />
@@ -107,14 +116,19 @@ const Contact = () => {
                                     rows="4"
                                     value={formData.message}
                                     onChange={handleChange}
-                                    className="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent-cyan/50 focus:ring-1 focus:ring-accent-cyan/50 transition-all resize-none"
+                                    className="w-full bg-dark/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent-emerald/50 focus:ring-1 focus:ring-accent-emerald/50 transition-all resize-none"
                                     placeholder="Tell me about your project..."
                                     required
                                 ></textarea>
                             </div>
 
-                            <Button variant="primary" className="w-full" icon={FaPaperPlane}>
-                                Send Message
+                            <Button 
+                                variant="primary" 
+                                className="w-full relative overflow-hidden group/btn" 
+                                icon={FaPaperPlane}
+                            >
+                                <span className="relative z-10 transition-transform group-hover/btn:translate-x-1 duration-300">Send Message</span>
+                                <div className="absolute inset-0 bg-white/10 translate-y-12 group-hover/btn:translate-y-0 transition-transform duration-300"></div>
                             </Button>
                         </form>
                     </motion.div>
